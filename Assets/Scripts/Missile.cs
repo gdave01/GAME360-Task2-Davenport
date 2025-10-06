@@ -24,6 +24,7 @@ public class Missile : MonoBehaviour
                 enemy.TakeDamage(2);
                 GameManager.Instance.AddScore(50);
                 Destroy(gameObject);
+                Debug.Log("enemy hit!");
             }
         }
 

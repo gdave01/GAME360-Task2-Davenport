@@ -5,7 +5,6 @@ public class Rock : MonoBehaviour
     public float rotationSpeed = 90f;
     private void Update()
     {
-        // Rotate for visual effect
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
     private void OnTriggerEnter2D(Collider2D other)

@@ -40,7 +40,9 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2(horizontal, vertical).normalized;
         rb.linearVelocity = movement * moveSpeed;
-        
+
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
     }
 
     private void HandleShooting()
@@ -55,10 +57,11 @@ public class PlayerController : MonoBehaviour
 
     private void FireMissle()
     {
-        if (GameManager.Instance.score > 499 && GameManager.Instance.score < 1000)
+        /*if (GameManager.Instance.score > 499 && GameManager.Instance.score < 1000)
             fireRate = 0.3f;
         if (GameManager.Instance.score > 1000)
             fireRate = 0.1f;
+        */
         if (misslePrefab && misslePoint)
         {
             Instantiate(misslePrefab, misslePoint.position, misslePoint.rotation);

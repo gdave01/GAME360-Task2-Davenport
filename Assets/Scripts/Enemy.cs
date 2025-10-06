@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
     public int hp = 8;
-    public float moveSpeed = 1.2f;
+    public float moveSpeed = 1.1f;
 
-    public float detectRange = 5.75f;
+    public float detectRange = 500f;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -33,9 +34,8 @@ public class Enemy : MonoBehaviour
             float distance = Vector2.Distance(transform.position, player.position);
             if (distance <= detectRange)
             {
-                Vector2 direction = (player.position -
-                transform.position).normalized;
-                // rb.linearVelocity = direction * moveSpeed;
+                Vector2 direction = (player.position - transform.position).normalized;
+                rb.linearVelocity = direction * moveSpeed;
                 rb.AddForce(direction * moveSpeed);
             }
             else
