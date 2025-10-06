@@ -372,7 +372,7 @@ Transform:
   m_GameObject: {fileID: 243828495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: -0.02, z: 0}
+  m_LocalPosition: {x: -8.93, y: -0.02, z: 0}
   m_LocalScale: {x: 0.20240624, y: 11.085924, z: 1.0795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -559,7 +559,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -793,7 +793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: score
+  m_Text: Score
 --- !u!222 &442393823
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -870,8 +870,8 @@ Canvas:
   m_GameObject: {fileID: 1000961458}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 207698484}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -881,7 +881,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1599270165
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1000961462
@@ -1043,7 +1043,7 @@ Transform:
   m_GameObject: {fileID: 1120173435}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: -0, z: 0}
+  m_LocalPosition: {x: 8.89, y: -0, z: 0}
   m_LocalScale: {x: 0.20240624, y: 11.085924, z: 1.0795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1180,7 +1180,7 @@ Transform:
   m_GameObject: {fileID: 1246981205}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00648502, y: 0.01667694, z: -0.707665, w: 0.70632154}
-  m_LocalPosition: {x: 0.07, y: -5.21, z: -0.2}
+  m_LocalPosition: {x: 0.07, y: -4.86, z: -0.19}
   m_LocalScale: {x: 0.30871, y: 18.942995, z: 1.0795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1566,7 +1566,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1746,7 +1746,7 @@ Transform:
   m_GameObject: {fileID: 2023547979}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00648502, y: 0.01667694, z: -0.707665, w: 0.70632154}
-  m_LocalPosition: {x: 0.07, y: 5.25, z: 0.14}
+  m_LocalPosition: {x: 0.07, y: 5.1, z: 0.14}
   m_LocalScale: {x: 0.30871, y: 18.942995, z: 1.0795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1817,7 +1817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &2051577695
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1963,7 +1963,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1979,7 +1979,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4645651650540601469, guid: 5efb77fa25d39004999bb17c44b824fe, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5081250220456521565, guid: 5efb77fa25d39004999bb17c44b824fe, type: 3}
       propertyPath: m_Name
@@ -1987,7 +1987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5081250220456521565, guid: 5efb77fa25d39004999bb17c44b824fe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6763898119497398305, guid: 5efb77fa25d39004999bb17c44b824fe, type: 3}
       propertyPath: m_SortingLayer

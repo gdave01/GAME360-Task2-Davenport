@@ -10,10 +10,22 @@ public class PlayerController : MonoBehaviour
     public GameObject misslePrefab;
     public Transform misslePoint;
 
+    [Header("Audio")]
+    public AudioClip missleSound;
+    public AudioClip rockSound;
+    private AudioSource audioSource;
+
     private Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.volume = 0.8f;
     }
     void Update()
     {
@@ -51,6 +63,8 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(misslePrefab, misslePoint.position, misslePoint.rotation);
         }
+
+        audioSource.PlayOneShot(missleSound);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -64,6 +78,7 @@ public class PlayerController : MonoBehaviour
             Rock rock = other.GetComponent<Rock>();
             if (rock)
             {
+                audioSource.PlayOneShot(rockSound);
                 GameManager.Instance.rockValue(20);
                 Destroy(other.gameObject);
             }

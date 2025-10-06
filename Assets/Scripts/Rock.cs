@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    //public int value = 50;
     public float rotationSpeed = 90f;
     private void Update()
     {
@@ -13,7 +12,6 @@ public class Rock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //GameManager.Instance.rockValue(value);
             Destroy(gameObject);
         }
     }

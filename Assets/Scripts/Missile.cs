@@ -14,7 +14,7 @@ public class Missile : MonoBehaviour
         Destroy(gameObject, duration);
     }
 
-    private void OnTriggerEnter2D (Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
@@ -32,14 +32,5 @@ public class Missile : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("Hit Wall");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //rb = GetComponent<Rigidbody2D>();
-        //rb.linearVelocity = transform.up * speed;
-
-        //Destroy(gameObject, duration);
     }
 }

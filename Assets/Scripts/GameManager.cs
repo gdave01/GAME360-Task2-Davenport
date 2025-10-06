@@ -69,10 +69,12 @@ public class GameManager : MonoBehaviour
 
     private void refreshSys()
     {
-        if (scoreTxt) scoreTxt.text = "Score: " + score;
-        if (livesTxt) livesTxt.text = "Lives: " + lives;
-        if (enemiesTxt) enemiesTxt.text = "Enemies: " +
-        enemiesDefeated;
+        if (scoreTxt)
+            scoreTxt.text = "Score: " + score;
+        if (livesTxt) 
+            livesTxt.text = "Lives: " + lives;
+        if (enemiesTxt) 
+            enemiesTxt.text = "Enemies: " + enemiesDefeated;
     }
     public void quitGame()
     {
