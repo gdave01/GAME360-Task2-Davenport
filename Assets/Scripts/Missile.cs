@@ -1,0 +1,45 @@
+using UnityEngine;
+
+public class Missile : MonoBehaviour
+{
+    public float speed = 7f;
+    public float duration = 3f;
+
+    private Rigidbody2D rb;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = transform.up * speed;
+
+        Destroy(gameObject, duration);
+    }
+
+    private void OnTriggerEnter2D (Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy)
+            {
+                enemy.TakeDamage(2);
+                GameManager.Instance.AddScore(50);
+                Destroy(gameObject);
+            }
+        }
+
+        if (other.CompareTag("Bounds"))
+        {
+            Destroy(gameObject);
+            Debug.Log("Hit Wall");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //rb = GetComponent<Rigidbody2D>();
+        //rb.linearVelocity = transform.up * speed;
+
+        //Destroy(gameObject, duration);
+    }
+}
