@@ -4,7 +4,7 @@ public class AlienSpawner : MonoBehaviour
 {
     [Header("Spawning")]
     public GameObject alienPrefab;
-    public float spawnRate = 2f;
+    public float spawnRate = 6f;
     public Transform[] spawnPoints;
 
     private float nextSpawnTime = 0f;

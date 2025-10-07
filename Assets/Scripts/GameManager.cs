@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     }
     public void OnLoad (Scene scene, LoadSceneMode mode)
     {
-        refreshSys();
+        refreshReferences();
         updateUI();
     }
 
@@ -51,30 +51,25 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        //updateUI();
-        //refreshSys();
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
         if (startButton != null)
             startButton.onClick.AddListener(startGame);
         if (quitButton != null)
             quitButton.onClick.AddListener(quitGame);
     }
 
-    private void updateUI()
+    private void refreshReferences()
     {
-        scoreTxt = GameObject.Find("score")?.GetComponent<Text>();
-        livesTxt = GameObject.Find("lives")?.GetComponent<Text>();
-        enemiesTxt = GameObject.Find("enemiesDefeated")?.GetComponent<Text>();
+        scoreTxt = GameObject.Find("Score")?.GetComponent<Text>();
+        livesTxt = GameObject.Find("Lives")?.GetComponent<Text>();
     }
 
-    private void refreshSys()
+    private void updateUI()
     {
-        if (scoreTxt)
+        if (scoreTxt) 
             scoreTxt.text = "Score: " + score;
         if (livesTxt) 
             livesTxt.text = "Lives: " + lives;
-        if (enemiesTxt) 
-            enemiesTxt.text = "Enemies: " + enemiesDefeated;
     }
     public void quitGame()
     {
@@ -84,21 +79,21 @@ public class GameManager : MonoBehaviour
 
     public void startGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
         Debug.Log("Start clicked");
     }
 
     public void AddScore(int points)
     {
         score += points;
-        refreshSys();
+        updateUI();
         Debug.Log($"Increased score by {points}. Total: {score}");
     }
 
     public void loseLife()
     {
         lives--;
-        refreshSys();
+        updateUI();
         Debug.Log($"Hit by enemy! Lives remaining: {lives}");
 
         if (lives <= 0)
@@ -107,8 +102,9 @@ public class GameManager : MonoBehaviour
 
     private void gameOver()
     {
+        destroyAll();
+        Application.Quit();
         Debug.Log("Ship Destroyed - Game Over!");
-        Time.timeScale = 0f;
     }
 
     public void enemyDefeated()
@@ -122,5 +118,26 @@ public class GameManager : MonoBehaviour
     {
         AddScore(value);
         Debug.Log($"Asteroid worth {value} points.");
+    }
+
+    private void destroyAll()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        
+        GameObject[] missiles = GameObject.FindGameObjectsWithTag("Missile");
+        foreach (GameObject missile in missiles)
+        {
+            Destroy(missile);
+        }
+        
+        GameObject[] rocks = GameObject.FindGameObjectsWithTag("rock");
+        foreach (GameObject rock in rocks)
+        {
+            Destroy(rock);
+        }
     }
 }

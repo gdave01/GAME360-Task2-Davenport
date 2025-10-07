@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Missile : MonoBehaviour
 {
-    public float speed = 7f;
+    public float speed = 10f;
     public float duration = 3f;
 
     private Rigidbody2D rb;

@@ -3,10 +3,11 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
-    public int hp = 8;
-    public float moveSpeed = 1.1f;
+    public int hp = 4;
+    public float moveSpeed = 2.4f;
+    public float shipDuration = 10f;
 
-    public float detectRange = 500f;
+    public float detectRange = 1000f;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj) player = playerObj.transform;
+
+        Destroy(gameObject, shipDuration);
     }
 
     void Update()
@@ -27,10 +30,6 @@ public class Enemy : MonoBehaviour
     {
         if (player)
         {
-            //if (GameManager.Instance.score > 1000)
-                //moveSpeed = 3f;
-            //if (GameManager.Instance.score > 2000)
-                //moveSpeed = 4f;
             float distance = Vector2.Distance(transform.position, player.position);
             if (distance <= detectRange)
             {
@@ -57,5 +56,4 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.enemyDefeated();
         Destroy(gameObject);
     }
-
 }
