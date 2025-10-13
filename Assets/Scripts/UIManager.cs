@@ -34,8 +34,11 @@ public class UIManager : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private void UpdateScore()
+    private void UpdateScore(object scoreData)
     {
-        throw new NotImplementedException();
+        if (scoreTxt != null)
+        {
+            scoreTxt.text = "Score: " + scoreData.ToString();
+        }
     }
 }

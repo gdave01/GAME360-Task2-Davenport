@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour
     public void AddScore(int points)
     {
         score += points;
-        updateUI();
+        EventManager.TriggerEvent("OnScoreChanged", score);
+        //updateUI();
         Debug.Log($"Increased score by {points}. Total: {score}");
     }
 
