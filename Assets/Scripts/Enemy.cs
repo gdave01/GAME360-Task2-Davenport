@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
     private void Despawn()
     {
         GameManager.Instance.enemyDefeated();
+        EventManager.TriggerEvent("OnEnemyDefeated");
         Destroy(gameObject);
     }
 }

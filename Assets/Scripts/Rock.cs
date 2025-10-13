@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
+    [Header("Asteroid Settings")]
     public float rotationSpeed = 90f;
+    public int rockValue = 10;
+
     private void Update()
     {
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
@@ -11,8 +15,17 @@ public class Rock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Mine();
         }
+    }
+
+    private void Mine()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AddScore(rockValue);
+        }
+        //EventManager.TriggerEvent("OnPowerUpCollected", rockValue);
     }
 }
 

@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour
     public void loseLife()
     {
         lives--;
-        updateUI();
+        EventManager.TriggerEvent("OnPlayerHealthChanged", lives);
+        //updateUI();
         Debug.Log($"Hit by enemy! Lives remaining: {lives}");
 
         if (lives <= 0)
@@ -115,11 +116,11 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Ship blown up! Total alien ships defeated: {enemiesDefeated}");
     }
 
-    public void rockValue (int value)
+    /*public void rockValue (int value)
     {
         AddScore(value);
         Debug.Log($"Asteroid worth {value} points.");
-    }
+    }*/
 
     private void destroyAll()
     {
