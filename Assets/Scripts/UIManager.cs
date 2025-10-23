@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,9 +26,10 @@ public class UIManager : MonoBehaviour
         Debug.Log("Added 1 life");
     }
 
-    private void UpdateScene()
+    private void UpdateScene(object gameOver)
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene("MainMenu");
+        Debug.Log("showing main menu");
     }
 
     private void UpdateTBD()

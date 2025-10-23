@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        
         SceneManager.LoadScene(0);
         if (startButton != null)
             startButton.onClick.AddListener(startGame);
@@ -105,7 +106,9 @@ public class GameManager : MonoBehaviour
     private void gameOver()
     {
         destroyAll();
-        Application.Quit();
+        //Application.Quit();
+        EventManager.TriggerEvent("OnLevelComplete", score);
+        EventManager.ClearAllEvents();
         Debug.Log("Ship Destroyed - Game Over!");
     }
 
