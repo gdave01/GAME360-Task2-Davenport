@@ -1,16 +1,35 @@
 using UnityEngine;
 
-public class AttackingState : MonoBehaviour
+public class AttackingState : PlayerState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void EnterState(PlayerController player)
     {
-        
+        TryPlayAnimation(player, "Attack");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState(PlayerController player)
     {
-        
+
+    }
+
+    public override void ExitState(PlayerController player) { }
+
+    public override string GetStateName() => "Attacking";
+
+    private void TryPlayAnimation(PlayerController player, string animName)
+    {
+        if (player.animator != null &&
+            player.animator.runtimeAnimatorController != null &&
+            player.animator.isActiveAndEnabled)
+        {
+            try
+            {
+                player.animator.Play(animName);
+            }
+            catch
+            {
+                // Animation doesn't exist - continue without it
+            }
+        }
     }
 }

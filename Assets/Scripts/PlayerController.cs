@@ -10,30 +10,38 @@ public class PlayerController : MonoBehaviour
     public GameObject misslePrefab;
     public Transform misslePoint;
 
+    public GameObject exhaust;
+
     /*[Header("Audio")]
     public AudioClip missleSound;
     public AudioClip rockSound;
     private AudioSource audioSource;*/
 
-    private Rigidbody2D rb;
+    public Animator animator;
+
+    private PlayerState currentState;
+
+    public Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-       /* audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
-
-        audioSource.playOnAwake = false;
-        audioSource.volume = 0.8f;*/
+        ChangeState(new IdleState());
     }
     void Update()
     {
         HandleMovement();
         HandleShooting();
+        
+
+        if (currentState != null)
+        {
+            currentState.UpdateState(this);
+        }
+
     }
 
-    private void HandleMovement()
+    public void HandleMovement()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -43,15 +51,18 @@ public class PlayerController : MonoBehaviour
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+
+        //animator.SetBool("IsFlying", true);
+
     }
 
-    private void HandleShooting()
+    public void HandleShooting()
     {
         if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
         {
             FireMissle();
             nextFireTime = Time.time + fireRate;
-            Debug.Log("Projectile Fired!");
+            //Debug.Log("Projectile Fired!");
         }
     }
 
@@ -71,6 +82,7 @@ public class PlayerController : MonoBehaviour
         AudioManager.Instance.PlayFireSound();
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -87,5 +99,18 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+    }
+
+    public void ChangeState(PlayerState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.ExitState(this);
+        }
+
+        currentState = newState;
+        currentState.EnterState(this);
+
+        EventManager.TriggerEvent("OnPlayerStateChanged", currentState.GetStateName());
     }
 }

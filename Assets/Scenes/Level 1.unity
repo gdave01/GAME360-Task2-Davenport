@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score:'
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lives:'
+  m_text: 'Lives: 5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1873,6 +1873,7 @@ GameObject:
   - component: {fileID: 1815329372}
   - component: {fileID: 1815329371}
   - component: {fileID: 1815329373}
+  - component: {fileID: 1815329374}
   m_Layer: 0
   m_Name: Cruiser 3
   m_TagString: Player
@@ -1999,7 +2000,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2026,6 +2027,7 @@ MonoBehaviour:
   moveSpeed: 5
   misslePrefab: {fileID: 2794257901706484034, guid: 09c39e873697e534fbc8ee87d20f75aa, type: 3}
   misslePoint: {fileID: 99007396}
+  animator: {fileID: 1815329374}
 --- !u!61 &1815329373
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2072,6 +2074,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.66, y: 2.59}
   m_EdgeRadius: 0
+--- !u!95 &1815329374
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815329367}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 818e56960ee1aa24f89bfa77a02ae46f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1815963248
 GameObject:
   m_ObjectHideFlags: 0

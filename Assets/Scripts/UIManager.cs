@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
         EventManager.Subscribe("OnScoreChanged", UpdateScore);
         EventManager.Subscribe("OnPlayerHealthChanged", UpdateHealth);
-        EventManager.Subscribe("OnEnemyDefeated", UpdateTBD);
+        EventManager.Subscribe("OnEnemyDefeated", UpdateScore);
         EventManager.Subscribe("OnLevelComplete", UpdateScene);
         EventManager.Subscribe("OnPowerUpCollected", UpdatePower);
     }
