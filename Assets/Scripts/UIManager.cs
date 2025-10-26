@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreTxt;
     public TMP_Text livesTxt;
 
+    public GameObject gameOver;
+
     void Start()
     {
         Debug.Log("UI Manager active");
@@ -16,8 +18,14 @@ public class UIManager : MonoBehaviour
         EventManager.Subscribe("OnScoreChanged", UpdateScore);
         EventManager.Subscribe("OnPlayerHealthChanged", UpdateHealth);
         EventManager.Subscribe("OnEnemyDefeated", UpdateScore);
-        EventManager.Subscribe("OnLevelComplete", UpdateScene);
+        EventManager.Subscribe("OnGameOver", UpdateScene);
         EventManager.Subscribe("OnPowerUpCollected", UpdatePower);
+
+        if (gameOver != null)
+        {
+            gameOver.SetActive(false);
+            Debug.Log("Game Over Panel disabled");
+        }
     }
 
     private void UpdatePower()
@@ -26,10 +34,20 @@ public class UIManager : MonoBehaviour
         Debug.Log("Added 1 life");
     }
 
-    private void UpdateScene(object gameOver)
+    private void UpdateScene(object finalScore)
     {
         SceneManager.LoadScene("MainMenu");
-        Debug.Log("showing main menu");
+        GameManager.Instance.sButton.SetActive(true);
+        GameManager.Instance.qButton.SetActive(true);
+        GameManager.Instance.title.SetActive(true);
+        if (gameOver != null)
+        {
+            gameOver.SetActive(true);
+            Debug.Log("Game Over Panel activated");
+        }
+        
+ 
+        //Debug.Log("showing main menu");
     }
 
     private void UpdateTBD()

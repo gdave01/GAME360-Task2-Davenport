@@ -7,7 +7,6 @@ public class MovingState : PlayerState
     {
         TryPlayAnimation(player, "Fly");
 
-        
     }
 
     public override void UpdateState(PlayerController player)
@@ -24,8 +23,8 @@ public class MovingState : PlayerState
         if (horizontal < 0 || horizontal > 0 || vertical < 0 || vertical > 0)
         {
             player.exhaust.SetActive(true);
-            player.ChangeState(new MovingState());
-            Debug.Log("moving works");
+            //player.ChangeState(new MovingState());
+            //Debug.Log("moving works");
         }
         else
         {

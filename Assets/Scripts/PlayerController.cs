@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform misslePoint;
 
     public GameObject exhaust;
+    public GameObject burst;
 
     /*[Header("Audio")]
     public AudioClip missleSound;
@@ -68,11 +69,11 @@ public class PlayerController : MonoBehaviour
 
     private void FireMissle()
     {
-        if (GameManager.Instance.score > 300 && GameManager.Instance.score < 1000)
+       /* if (GameManager.Instance.score > 300 && GameManager.Instance.score < 1000)
             fireRate = 0.3f;
         if (GameManager.Instance.score > 1000)
             fireRate = 0.1f;
-        
+        */
         if (misslePrefab && misslePoint)
         {
             Instantiate(misslePrefab, misslePoint.position, misslePoint.rotation);
@@ -113,4 +114,9 @@ public class PlayerController : MonoBehaviour
 
         EventManager.TriggerEvent("OnPlayerStateChanged", currentState.GetStateName());
     }
+
+    /*public string GetCurrentStateName()
+    {
+        return currentState != null ? currentState.GetStateName() : "None";
+    }*/
 }

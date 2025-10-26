@@ -5,10 +5,20 @@ public class AttackingState : PlayerState
     public override void EnterState(PlayerController player)
     {
         TryPlayAnimation(player, "Attack");
+        
     }
 
     public override void UpdateState(PlayerController player)
     {
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f)
+        {
+            player.ChangeState(new MovingState());
+        }
+
+        if (!Input.GetButton("Fire1"))
+        {
+            player.burst.SetActive(false);
+        }
 
     }
 

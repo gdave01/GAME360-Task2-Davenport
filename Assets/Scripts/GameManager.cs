@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using TMPro;
+using SmallShips;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class GameManager : MonoBehaviour
 
     public Button startButton;
     public Button quitButton;
+
+    public GameObject sButton;
+    public GameObject qButton;
+    public GameObject title;
 
     public int score = 0;
     public int lives = 5;
@@ -80,7 +85,9 @@ public class GameManager : MonoBehaviour
 
     public void startGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        score = 0;
+        lives = 5;
         Debug.Log("Start clicked");
     }
 
@@ -105,9 +112,9 @@ public class GameManager : MonoBehaviour
 
     private void gameOver()
     {
-        destroyAll();
+        //destroyAll();
         //Application.Quit();
-        EventManager.TriggerEvent("OnLevelComplete", score);
+        EventManager.TriggerEvent("OnGameOver", score);
         EventManager.ClearAllEvents();
         Debug.Log("Ship Destroyed - Game Over!");
     }
