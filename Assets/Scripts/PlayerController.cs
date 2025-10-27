@@ -1,39 +1,43 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
+    [Header("Missile Setup")]
     private float fireRate = 0.5f;
     private float nextFireTime = 0f;
     public GameObject misslePrefab;
     public Transform misslePoint;
 
-    [Header("Audio")]
-    public AudioClip missleSound;
-    public AudioClip rockSound;
-    private AudioSource audioSource;
+    [Header("Afterburner")]
+    public GameObject exhaust;
+    public GameObject burst;
 
-    private Rigidbody2D rb;
+    public Animator animator;
+
+    private PlayerState currentState;
+
+    public Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
-
-        audioSource.playOnAwake = false;
-        audioSource.volume = 0.8f;
+        ChangeState(new IdleState());
     }
     void Update()
     {
         HandleMovement();
         HandleShooting();
+        
+        if (currentState != null)
+        {
+            currentState.UpdateState(this);
+        }
     }
-
-    private void HandleMovement()
+    public void HandleMovement()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -45,7 +49,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
     }
 
-    private void HandleShooting()
+    public void HandleShooting()
     {
         if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
         {
@@ -54,37 +58,48 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Projectile Fired!");
         }
     }
-
     private void FireMissle()
     {
-        if (GameManager.Instance.score > 300 && GameManager.Instance.score < 1000)
-            fireRate = 0.3f;
-        if (GameManager.Instance.score > 1000)
-            fireRate = 0.1f;
-        
         if (misslePrefab && misslePoint)
         {
             Instantiate(misslePrefab, misslePoint.position, misslePoint.rotation);
         }
-
-        audioSource.PlayOneShot(missleSound);
+        AudioManager.Instance.PlayFireSound();
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
             GameManager.Instance.loseLife();
+            AudioManager.Instance.PlayDamageSound();
         }
         if (other.CompareTag("rock"))
         {
             Rock rock = other.GetComponent<Rock>();
             if (rock)
             {
-                audioSource.PlayOneShot(rockSound);
-                GameManager.Instance.rockValue(20);
+                AudioManager.Instance.PlayMineSound();
                 Destroy(other.gameObject);
             }
         }
+
+        if (other.CompareTag("Pills"))
+        {
+            GameManager.Instance.gainLife();
+            AudioManager.Instance.PlayHealthSound();
+            Destroy(other.gameObject);
+        }
+    }
+    public void ChangeState(PlayerState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.ExitState(this);
+        }
+
+        currentState = newState;
+        currentState.EnterState(this);
+
+        EventManager.TriggerEvent("OnPlayerStateChanged", currentState.GetStateName());
     }
 }

@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791a219a46be94c499a44aed1525caaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlienSpawner
-  alienPrefab: {fileID: 8464470578812646846, guid: 0dd5711579b1c654ba464776cd56d3c4, type: 3}
+  alienPrefab: {fileID: 2278919842584155303, guid: ce79e0cedfcac194baf640154b4f4980, type: 3}
   spawnRate: 2
   spawnPoints:
   - {fileID: 2142517130888801793}
+  radius: 0
+  colliders: []

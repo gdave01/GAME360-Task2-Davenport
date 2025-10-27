@@ -8,6 +8,7 @@ TagManager:
   - Bounds
   - rock
   - Missile
+  - Pills
   layers:
   - Default
   - TransparentFX

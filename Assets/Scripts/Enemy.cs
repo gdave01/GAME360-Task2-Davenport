@@ -3,11 +3,12 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy Ship Stats")]
     public int hp = 4;
     public float moveSpeed = 2.4f;
-    public float shipDuration = 10f;
+    public float shipDuration = 20f;
 
-    public float detectRange = 1000f;
+    public float detectRange = 2000f;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -21,7 +22,6 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject, shipDuration);
     }
-
     void Update()
     {
         Follow();
@@ -43,17 +43,16 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
     public void TakeDamage(int damage)
     {
         hp -= damage;
         if (hp <= 0)
             Despawn();
     }
-
     private void Despawn()
     {
         GameManager.Instance.enemyDefeated();
+        EventManager.TriggerEvent("OnEnemyDefeated");
         Destroy(gameObject);
     }
 }
