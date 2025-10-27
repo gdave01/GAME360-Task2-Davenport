@@ -32,3 +32,61 @@
 ## Repository Stats
 - Total Commits: 7
 - Development Time: 18.5 hours
+
+-----------------------------------------------------------------
+# Task 3: Complete Patterns Integration
+
+# Project Evolution
+# Task 2 Foundation
+- Singleton Pattern: GameManager, AudioManager
+- Basic game with centralized management
+
+## Task 3 Additions
+## Observer Pattern
+- EventManager for decoupled communication
+- Events implemented: OnScoreChanged,
+                      OnPlayerHealthChanged,
+                      OnEnemyDefeated,
+                      OnGameOver,
+                      OnPowerUpCollected.
+- Observers: UIManager
+
+## State Machine Pattern
+- Player States: Attacking, Moving, Idle
+- Game States: Enhanced from Task 2
+- State transitions: Player is in the Attacking state when firing missiles and a visual flash is indicated upon state      transition. Player is in a Moving state when input is detected along each axis, the visual indication is flames emerging from the ships engine and the audio indication is a hovering sound. Player is in an Idle state when no conditions are met (ex: not firing and zero axis input), this state has no visual or audio indicator.
+
+### Key Integration Points
+1. Score System: Singleton → Observer → UI
+2. Player Actions: Input → State → Event → Audio
+3. Game Flow: GameState → Events → Scene Changes
+
+## Repository Statistics
+- Total Commits: 17
+- Task 3 Commits: 10
+- Lines of Code: ~655
+- Development Time: 20 Hrs 30 Mins
+
+## How to Play
+- Controls: W- fly up
+            A- fly left
+            S- fly down
+            D- fly right
+            Left Click- fire missile
+
+- Objective: Survive a horde of alien ships for as long as possible. Score points by defeating aliens and collecting asteriods. Replenish HP by collecting scattered pill bottles left by prior expeditions.
+
+             Similar to older arcade games like "Missile Command", there is no true win condition, just have fun and try to beat your own high score.
+
+             Alien Ship = 50 points
+             Asteroid = 10 points
+
+             Player lives = 5
+
+- New Features: Health pickups, 
+                Enemy audio, 
+                Improved enemy spawn locations,
+                Game over menu,
+                Replayable level.
+
+-----------------------------------------------------------------
