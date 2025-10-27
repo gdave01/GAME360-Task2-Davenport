@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameManager.Instance.loseLife();
+            AudioManager.Instance.PlayDamageSound();
         }
         if (other.CompareTag("rock"))
         {
@@ -96,9 +98,15 @@ public class PlayerController : MonoBehaviour
             if (rock)
             {
                 AudioManager.Instance.PlayMineSound();
-                //GameManager.Instance.rockValue(20);
                 Destroy(other.gameObject);
             }
+        }
+
+        if (other.CompareTag("Pills"))
+        {
+            GameManager.Instance.gainLife();
+            AudioManager.Instance.PlayHealthSound();
+            Destroy(other.gameObject);
         }
     }
 

@@ -50,11 +50,6 @@ public class UIManager : MonoBehaviour
         //Debug.Log("showing main menu");
     }
 
-    private void UpdateTBD()
-    {
-        throw new NotImplementedException();
-    }
-
     private void UpdateHealth(object playerData)
     {
         if (livesTxt != null)

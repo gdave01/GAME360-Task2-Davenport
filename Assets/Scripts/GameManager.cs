@@ -110,6 +110,13 @@ public class GameManager : MonoBehaviour
             gameOver();
     }
 
+    public void gainLife()
+    {
+        lives++;
+        EventManager.TriggerEvent("OnPlayerHealthChanged", lives);
+        EventManager.TriggerEvent("OnPowerUpCollected", lives);
+    }
+
     private void gameOver()
     {
         //destroyAll();

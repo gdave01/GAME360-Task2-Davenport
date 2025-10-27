@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip missileSound;
     public AudioClip rockSound;
+    public AudioClip healthPickup;
+    public AudioClip playerHit;
     public static AudioManager Instance { get; private set; }
     void Awake()
     {
@@ -33,4 +35,7 @@ public class AudioManager : MonoBehaviour
     public void PlayFireSound() => PlayClip(missileSound);
 
     public void PlayMineSound() => PlayClip(rockSound);
+
+    public void PlayHealthSound() => PlayClip(healthPickup);
+    public void PlayDamageSound() => PlayClip(playerHit);
 }
