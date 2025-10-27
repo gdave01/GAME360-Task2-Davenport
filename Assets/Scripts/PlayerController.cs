@@ -6,18 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
+    [Header("Missile Setup")]
     private float fireRate = 0.5f;
     private float nextFireTime = 0f;
     public GameObject misslePrefab;
     public Transform misslePoint;
 
+    [Header("Afterburner")]
     public GameObject exhaust;
     public GameObject burst;
-
-    /*[Header("Audio")]
-    public AudioClip missleSound;
-    public AudioClip rockSound;
-    private AudioSource audioSource;*/
 
     public Animator animator;
 
@@ -35,14 +32,11 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleShooting();
         
-
         if (currentState != null)
         {
             currentState.UpdateState(this);
         }
-
     }
-
     public void HandleMovement()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -53,9 +47,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
-
-        //animator.SetBool("IsFlying", true);
-
     }
 
     public void HandleShooting()
@@ -64,27 +55,17 @@ public class PlayerController : MonoBehaviour
         {
             FireMissle();
             nextFireTime = Time.time + fireRate;
-            //Debug.Log("Projectile Fired!");
+            Debug.Log("Projectile Fired!");
         }
     }
-
     private void FireMissle()
     {
-       /* if (GameManager.Instance.score > 300 && GameManager.Instance.score < 1000)
-            fireRate = 0.3f;
-        if (GameManager.Instance.score > 1000)
-            fireRate = 0.1f;
-        */
         if (misslePrefab && misslePoint)
         {
             Instantiate(misslePrefab, misslePoint.position, misslePoint.rotation);
         }
-
-        //audioSource.PlayOneShot(missleSound);
         AudioManager.Instance.PlayFireSound();
     }
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -109,7 +90,6 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
     public void ChangeState(PlayerState newState)
     {
         if (currentState != null)
@@ -122,9 +102,4 @@ public class PlayerController : MonoBehaviour
 
         EventManager.TriggerEvent("OnPlayerStateChanged", currentState.GetStateName());
     }
-
-    /*public string GetCurrentStateName()
-    {
-        return currentState != null ? currentState.GetStateName() : "None";
-    }*/
 }

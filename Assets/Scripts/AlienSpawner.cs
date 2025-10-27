@@ -37,7 +37,6 @@ public class AlienSpawner : MonoBehaviour
                 Vector3 spawnPos = new Vector3(0,0,0);
                 bool spotOpen = false;
                 
-
                 while (!spotOpen)
                 {
                     float spawnPosX = Random.Range(-8f, 8f);
@@ -50,12 +49,8 @@ public class AlienSpawner : MonoBehaviour
                         break;
                 }
                 Instantiate(alienPrefab, spawnPos, Quaternion.identity);
-
-                /*int randomIndex = Random.Range(0, spawnPoints.Length);
-                Instantiate(alienPrefab, spawnPoints[randomIndex].position, Quaternion.identity);*/
             }
         }
-        
     }
     bool preventOverlap(Vector3 spawnPos)
     {
@@ -78,8 +73,7 @@ public class AlienSpawner : MonoBehaviour
                 {
                     return false;
                 }
-            }
-            
+            } 
         }
         return true;
     }

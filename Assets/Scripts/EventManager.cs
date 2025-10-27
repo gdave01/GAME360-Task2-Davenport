@@ -16,7 +16,6 @@ public class EventManager : MonoBehaviour
             eventDictionary[eventName].Invoke();
         }
     }
-
     public static void TriggerEvent(string eventName, object data)
     {
         if (eventDictionaryData.ContainsKey(eventName) && eventDictionaryData[eventName] != null)
@@ -24,7 +23,6 @@ public class EventManager : MonoBehaviour
             eventDictionaryData[eventName].Invoke(data);
         }
     }
-
     public static void Subscribe(string eventName, Action listener)
     {
         if (!eventDictionary.ContainsKey(eventName))
@@ -33,7 +31,6 @@ public class EventManager : MonoBehaviour
         }
         eventDictionary[eventName] += listener;
     }
-
     public static void Subscribe(string eventName, Action<object> listener)
     {
         if (!eventDictionaryData.ContainsKey(eventName))
@@ -42,7 +39,6 @@ public class EventManager : MonoBehaviour
         }
         eventDictionaryData[eventName] += listener;
     }
-
     public static void Unsubscribe(string eventName, Action listener)
     {
         if (eventDictionary.ContainsKey(eventName))
@@ -57,7 +53,6 @@ public class EventManager : MonoBehaviour
             eventDictionaryData[eventName] -= listener;
         }
     }
-
     public static void ClearAllEvents()
     {
         eventDictionary.Clear();
